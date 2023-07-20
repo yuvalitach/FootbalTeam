@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/all"
+    android:background="@drawable/show"
+    tools:context=".ShowGroupsActivity">
+
+    <LinearLayout
+        android:id="@+id/LL_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="50dp"
+            android:spinnerMode="dropdown"></Spinner>
+
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/get_button"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:text="קבוצה לבחירה"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/font"
+            app:cornerRadius="30dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/white"
+            app:strokeWidth="3dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/black" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/Team"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:textDirection="rtl"
+            android:text="בחר קבוצה כדי להציג את השחקנים"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
