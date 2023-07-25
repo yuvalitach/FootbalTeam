@@ -24,11 +24,4 @@ public class RetrofitService {
     }
 
 
-//    public static FootbalApi Create(){
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("http://10.0.2.2:5212/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        return retrofit.create(FootbalApi.class);
-//    }
 }

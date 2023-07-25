@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 
@@ -27,6 +28,7 @@ public class DeletePlayerActivity extends AppCompatActivity {
     private ArrayList<Player> players = new ArrayList<>();
     private int selectedOption;
     private View view;
+    private ImageButton backBUtton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,14 @@ public class DeletePlayerActivity extends AppCompatActivity {
         init();
     }
     private void init() {
+        backBUtton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         //Spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, playersNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -98,6 +108,7 @@ public class DeletePlayerActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         delete_button = findViewById(R.id.main_BTN_deletePlayer);
         view = findViewById(R.id.all);
+        backBUtton = findViewById(R.id.backButton);
     }
 
     private void onAddShowPopupWindowClick(View view) {
@@ -116,6 +127,7 @@ public class DeletePlayerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

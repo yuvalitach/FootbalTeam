@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
@@ -20,6 +21,8 @@ public class AddPlayerActivity extends AppCompatActivity {
     private TextInputEditText main_EDT_name, main_EDT_Id, main_EDT_rate, main_EDT_team, main_EDT_position;
     private ExtendedFloatingActionButton main_BTN_addPlayer;
     private View view;
+
+    private ImageButton backBUtton;
 
 
     @Override
@@ -38,9 +41,19 @@ public class AddPlayerActivity extends AppCompatActivity {
         main_EDT_position = findViewById(R.id.main_EDT_position);
         main_BTN_addPlayer = findViewById(R.id.main_BTN_addPlayer);
         view = findViewById(R.id.all);
+        backBUtton = findViewById(R.id.backButton);
     }
 
     private void init() {
+        backBUtton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         main_BTN_addPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,8 +101,8 @@ public class AddPlayerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
-
 }

@@ -68,9 +68,8 @@ public class Player {
     public String toString() {
         return
                 "תז: " + id +
-                ", שם: " + name + '\'' +
+                ", שם: " + name +
                 ", דירוג: " + rate +
-                ", תפקיד: " + position + '\'' +
-                '}';
+                ", תפקיד: " + position;
     }
 }

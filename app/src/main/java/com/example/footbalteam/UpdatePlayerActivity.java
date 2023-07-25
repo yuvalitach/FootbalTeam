@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 
@@ -29,7 +30,7 @@ public class UpdatePlayerActivity extends AppCompatActivity {
     private View view;
     private Player selectedPlayer = new Player();
     private int existId = -1;
-
+    private ImageButton backBUtton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,14 @@ public class UpdatePlayerActivity extends AppCompatActivity {
     }
 
     private void updatePlayer() {
+        backBUtton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         //Spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, playersNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -141,6 +150,7 @@ public class UpdatePlayerActivity extends AppCompatActivity {
         main_BTN_upsateAndChoosePlayer = findViewById(R.id.main_BTN_upsateAndChoosePlayer);
         main_BTN_updatePlayer = findViewById(R.id.main_BTN_updatePlayer);
         view = findViewById(R.id.all);
+        backBUtton = findViewById(R.id.backButton);
     }
 
     private void onAddShowPopupWindowClick(View view) {
@@ -159,6 +169,7 @@ public class UpdatePlayerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

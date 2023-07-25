@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginTop="80dp"
         android:layout_gravity="center"
         android:gravity="center">
 
@@ -84,6 +85,24 @@
         app:strokeWidth="3dp"
         android:layout_gravity="center"
         android:backgroundTint="#ADCAD1" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/main_BTN_GetPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="הצג פרטים על שחקן"
+            android:textColor="#ADCAD1"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/font"
+            app:iconGravity="textEnd"
+            app:strokeColor="#ADCAD1"
+            app:strokeWidth="3dp"
+            app:iconTint="@color/white" />
 </LinearLayout>
+
 
 </LinearLayout>

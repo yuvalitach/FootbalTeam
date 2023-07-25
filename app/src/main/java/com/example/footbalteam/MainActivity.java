@@ -14,7 +14,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ExtendedFloatingActionButton main_BTN_allGroups, main_BTN_addPlayer,main_DeletePlayer, main_BTN_UpdatePlayer,main_BTN_ShowGroups;
+    private ExtendedFloatingActionButton main_BTN_GetPlayer, main_BTN_addPlayer,main_DeletePlayer, main_BTN_UpdatePlayer,main_BTN_ShowGroups;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +53,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        main_BTN_GetPlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, GetPlayer.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         main_BTN_UpdatePlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         main_DeletePlayer = findViewById(R.id.main_DeletePlayer);
         main_BTN_UpdatePlayer = findViewById(R.id.main_BTN_UpdatePlayer);
         main_BTN_ShowGroups = findViewById(R.id.main_BTN_ShowGroups);
+        main_BTN_GetPlayer = findViewById(R.id.main_BTN_GetPlayer);
     }
 
     private void init() {

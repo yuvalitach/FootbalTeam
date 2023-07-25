@@ -8,6 +8,13 @@
     android:background="@drawable/update"
     tools:context=".UpdatePlayerActivity">
 
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/backButton"
+        android:background="#00FFFFFF"
+        android:src="@drawable/baseline_arrow_back_24"/>
+
     <LinearLayout
         android:id="@+id/LL_top"
         android:layout_width="wrap_content"

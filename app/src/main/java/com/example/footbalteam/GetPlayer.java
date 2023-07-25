@@ -2,6 +2,7 @@ package com.example.footbalteam;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -15,15 +16,15 @@ import com.google.android.material.textview.MaterialTextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShowGroupsActivity extends AppCompatActivity {
+public class GetPlayer extends AppCompatActivity {
 
-    private StringBuilder teamString = new StringBuilder();
     ;
-    private MaterialTextView team;
+    private MaterialTextView playerData;
     private Spinner spinner;
     private MaterialButton get_button;
-    private ArrayList<String> teamPlayers = new ArrayList<>();
-    private String selectedOption = "";
+    private ArrayList<String> playersNames = new ArrayList<>();
+    private ArrayList<Player> players = new ArrayList<>();
+    private int selectedOption;
     private View view;
 
     private ImageButton backBUtton;
@@ -32,12 +33,12 @@ public class ShowGroupsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_groups);
+        setContentView(R.layout.activity_get_player);
         findViews();
-        getGroups();
+        getPlayer();
     }
 
-    private void getGroups() {
+    private void getPlayer() {
         backBUtton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,40 +48,43 @@ public class ShowGroupsActivity extends AppCompatActivity {
             }
         });
         //Spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, teamPlayers);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, playersNames);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
-        FootbalService playerService = new FootbalService();
-        playerService.getAllTeams(new FootbalService.TeamsCallback() {
-
+        FootbalService footbalService = new FootbalService();
+        footbalService.getAllPlayers(new FootbalService.PlayersCallback() {
             @Override
-            public void onPlayersReceived(List<Integer> teams) {
-                for (int i = 0; i < teams.size(); i++) {
-                    adapter.add(String.valueOf(teams.get(i)));
+            public void onPlayersReceived(List<Player> playerResponse) {
+                for (int i = 0; i < playerResponse.size(); i++) {
+                    adapter.add("שם השחקן: "+playerResponse.get(i).getName()+", תז: "+(playerResponse.get(i).getId()));
                 }
                 adapter.notifyDataSetChanged();
             }
 
-                @Override
+            @Override
             public void onFailure(Throwable t) {
-
+                // Handle the failure case
+                // Display an error message or perform any other necessary operations
+                Log.e("pttt", "Failed to retrieve players: " + t.getMessage());
             }
         });
+
 
 
         get_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                selectedOption = spinner.getSelectedItem().toString();
-                playerService.getTeamById(Integer.parseInt(selectedOption), new FootbalService.PlayersCallback() {
+                String[] parts = spinner.getSelectedItem().toString().split("תז: ");
+                String idSelected = parts[1];
+                selectedOption = Integer.parseInt(idSelected);
+                footbalService.getPlayerData(selectedOption, new FootbalService.PlayersCallback() {
                     @Override
                     public void onPlayersReceived(List<Player> players) {
                         for (Player player : players) {
-                            teamString.append(player.toString()+"\n");
+                            if (player.getId()==(selectedOption)) {
+                                playerData.setText(player.toString());
+                            }
                         }
-                        team.setText(teamString);
                     }
 
                     @Override
@@ -97,7 +101,7 @@ public class ShowGroupsActivity extends AppCompatActivity {
     private void findViews() {
         spinner = findViewById(R.id.spinner);
         view = findViewById(R.id.all);
-        team = findViewById(R.id.Team);
+        playerData = findViewById(R.id.Team);
         get_button = findViewById(R.id.get_button);
         backBUtton = findViewById(R.id.backButton);
     }
